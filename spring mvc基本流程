@@ -1,0 +1,6 @@
+  前端控制器(DispatcherServlet)捕获请求，根据xml文件中的配置（或者注解）对请求的URL进行解析，得到请求资源标识符（URI）
+  控制器映射(HandlerMapping)根据该URI，获得处理该请求的Handler以及Handler对应的拦截器，最后以 HandlerExecutionChain 对象的形式返回前端控制器根据获得的Handler，选择一个合适的处理器适配器（HandlerAdapter）去执行该Handler
+  控制器适配(HandlerAdapter)前端控制器根据获得的Handler，选择一个合适的处理器适配器（HandlerAdapter）去执行该Handler，处理器适配器提取request中的模型数据，填充Handler入参，执行处理器Handler
+  处理器(Handler)  Handler(Controller)执行完成后，向处理器适配器返回一个ModelAndView对象，处理器适配器再向前端控制器返回该ModelAndView对象
+  ModelAndView  根据返回的ModelAndView，前端控制器请求一个适合的视图解析器（ViewResolver）（必须是已经注册到Spring容器中的ViewResolver）去进行视图解析，然后视图解析器向前端控制器返回一个真正的视图View（jsp），前端控制器通过Model解析出ModelAndView中的参数进行解析，最终展现出完整的View并通过Http response返回给客户端
+  视图解析器View Resolver
